@@ -1,0 +1,56 @@
+
+
+{% block %}
+    {% client %}What are you{% endclient %}
+    {% response %}
+    I am the latest result in artificial intelligence,
+    which can reproduce the capabilities of the human brain
+    with greater speed and accuracy.
+    {% endresponse %}
+{% endblock %}
+
+{% block %}
+    {% client %}.*your name.*{% endclient %}
+	{% client %}.*who are you{% endclient %}
+    {% response %}
+    I am Rasathi. The CovidBot!
+    {% endresponse %}
+{% endblock %}
+
+{% block %}
+    {% client %}Call me (.*){% endclient %}
+    {% response %}I will remember that {name:%1}{% endresponse %}
+{% endblock %}
+
+{% block %}
+    {% client %}what('s| is) my name{% endclient %}
+    {% response %}{%if {name} %}Your name is {name}{% else %} I don't know your name, Can you please tell me your name?{% endif %}{% endresponse %}
+{% endblock %}
+
+{% block %}
+    {% client %}((I('| a)m|my name is) )?(.*){% endclient %}
+    {% prev %}(.*)Can you please tell me your name{% endprev %}
+    {% response %}Thank you {name:%4}{% endresponse %}
+{% endblock %}
+
+{% block %}
+    {% client %}Do you remember my name{% endclient %}
+    {% response %}{% if {name} %}Yes I do {name}{% else %}No,{% chat what is my name %}{% endif %}{% endresponse %}
+{% endblock %}
+
+{% block %}
+    {% client %}(thanks|thank ?you){% endclient %}
+    {% response %}The pleasure is mine{% endresponse %}
+{% endblock %}
+
+{% block %}
+    {% client %}(.*) sorry (.*){% endclient %}
+    {% response %}There are many times when no apology is needed.{% endresponse %}
+    {% response %}What feelings do you have when you apologize?{% endresponse %}
+{% endblock %}
+
+
+{% block %}
+	{% client %}(?P<newss>.* .*){% endclient %}
+    {% response %}{% call news_faqs:%newss %}{% endresponse %}
+{% endblock %}
